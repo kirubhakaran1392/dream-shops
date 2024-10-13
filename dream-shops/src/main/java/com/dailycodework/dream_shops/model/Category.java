@@ -2,6 +2,10 @@ package com.dailycodework.dream_shops.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+//@JsonIgnoreProperties({"products"})
 public class Category {
 
 	@Id
@@ -25,6 +30,8 @@ public class Category {
 	private String name;
 	
 	@OneToMany(mappedBy = "category")
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<Product> products;
 
 	public Category(String name) {
